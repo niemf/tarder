@@ -1,0 +1,40 @@
+schedule:
+  nightly_review_time: "21:30"
+  timezone: "Asia/Shanghai"
+
+universe:
+  markets:
+    - sh_main_board
+    - sz_main_board
+  exclude_st: true
+  exclude_new_stock_days: 60
+  max_candidates: 3
+
+llm:
+  primary: doubao
+  reviewer: deepseek
+  doubao:
+    api_key: "${DOUBAO_API_KEY}"
+    endpoint: ""
+    model: ""
+  deepseek:
+    api_key: "${DEEPSEEK_API_KEY}"
+    endpoint: "https://api.deepseek.com/chat/completions"
+    model: "deepseek-chat"
+
+push:
+  primary: pushplus
+  fallback: feishu
+  pushplus:
+    token: "${PUSHPLUS_TOKEN}"
+    channel: "wechat"
+    template: "markdown"
+  feishu:
+    webhook_url: "${FEISHU_WEBHOOK_URL}"
+
+risk:
+  max_position_ratio_per_stock: 0.3
+  preferred_position_ratio_per_stock: 0.2
+  high_open_limit_percent: 5
+  reject_without_stop_loss: true
+

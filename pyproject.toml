@@ -1,0 +1,19 @@
+[project]
+name = "astock-review-bot"
+version = "0.1.0"
+description = "Nightly A-share review bot with LLM analysis and personal push notifications."
+requires-python = ">=3.9"
+dependencies = [
+  "akshare>=1.14.0",
+  "apscheduler>=3.10.4",
+  "pyyaml>=6.0.1",
+  "tenacity>=8.2.3"
+]
+
+[project.scripts]
+astock-review = "src.jobs.nightly_review:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+

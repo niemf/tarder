@@ -1,0 +1,2 @@
+"""AStock Review Bot package."""
+
