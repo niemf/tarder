@@ -55,4 +55,3 @@ class ReportRenderer:
             RiskLevel.HIGH: "高",
         }
         return labels[risk_level]
-

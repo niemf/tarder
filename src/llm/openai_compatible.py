@@ -6,7 +6,7 @@ import urllib.request
 
 
 class OpenAICompatibleProvider:
-    def __init__(self, api_key: str, endpoint: str, model: str, timeout_seconds: float = 60) -> None:
+    def __init__(self, api_key: str, endpoint: str, model: str, timeout_seconds: float = 180) -> None:
         self.api_key = api_key
         self.endpoint = endpoint
         self.model = model

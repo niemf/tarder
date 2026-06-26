@@ -47,6 +47,20 @@ src/
   -> persist context, prompts, outputs, report, and push result
 ```
 
+## Current Direction
+
+The initial implementation can collect local market snapshots through AkShare, but the next iteration should not depend on AkShare being available for the nightly review to be useful. The review prompt should ask Doubao to analyze the day's market context directly, including:
+
+- A-share index and sector behavior
+- US equity market influence
+- Japan and Korea market performance
+- current leading sector trends
+- important speeches, policy signals, and market-moving news
+- commodity, resource, consumer, and industrial price-hike clues
+- concrete stock candidates and execution plans only when the evidence is strong enough
+
+When local data is missing, the bot should provide this as an explicit instruction to Doubao instead of treating the review as a data-source failure.
+
 ## Stock Universe
 
 Allowed code prefixes:
@@ -104,4 +118,3 @@ v0.1 runs on a Windows PC using either:
 - Windows Task Scheduler at 21:30.
 
 The same code should later run on a cloud server with a cron or process supervisor.
-

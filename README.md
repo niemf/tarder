@@ -1,4 +1,6 @@
-﻿# AStock Review Bot
+# AStock Review Bot
+
+Auto trading review tool for nightly A-share market analysis.
 
 A spec-driven A-share nightly review assistant.
 
@@ -7,7 +9,7 @@ Initial scope:
 - Shanghai/Shenzhen main-board common stocks only
 - Generate one nightly review report at 21:30
 - Recommend 1 to 3 candidates with entry, stop loss, take profit, position, and invalidation rules
-- Use Doubao as the primary model and DeepSeek as the reviewer
+- Use Doubao as the primary model, with an optional reviewer model
 - Push reports through PushPlus and/or Feishu
 - No automatic trading in v0.1
 
@@ -95,8 +97,7 @@ The app reads `config/settings.yaml` at startup through `PyYAML`.
 
 DeepSeek defaults to `https://api.deepseek.com/chat/completions` with model `deepseek-chat`.
 
-Doubao/Volcengine Ark must be configured in `config/settings.yaml` after the model endpoint and model id are created in the provider console.
-
+Doubao/Volcengine Ark must be configured in `config/settings.yaml` after the model endpoint and model id are created in the provider console. The current implementation uses the OpenAI-compatible REST chat completions API directly.
 
 ## Service Scripts
 

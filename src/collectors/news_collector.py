@@ -17,4 +17,3 @@ class NewsCollector:
             headlines=["请结合当日公开财经新闻、政策变化、行业热点进行复盘。"],
             macro_notes=["关注外围市场、人民币汇率、商品价格和重要央行表态。"],
         )
-

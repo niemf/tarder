@@ -14,11 +14,7 @@ class MarketSnapshot:
 
 
 class MarketCollector:
-    """Collects A-share market data for nightly review.
-
-    The first implementation will use AkShare and keep all provider-specific
-    details behind this class.
-    """
+    """Collects A-share market data for nightly review."""
 
     MAIN_BOARD_PREFIXES = ("600", "601", "603", "605", "000", "001", "002", "003")
 

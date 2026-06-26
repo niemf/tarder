@@ -2,8 +2,9 @@
 
 import argparse
 import json
-from datetime import date
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from src.collectors.market_collector import MarketCollector
 from src.collectors.news_collector import NewsCollector
@@ -23,15 +24,16 @@ from src.storage.db import ReviewStore
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run A-share nightly review.")
     parser.add_argument("--config", default="config/settings.yaml")
-    parser.add_argument("--trade-date", default=date.today().isoformat())
+    parser.add_argument("--trade-date", default=None)
     parser.add_argument("--dry-run", action="store_true", help="Use sample data and skip real LLM calls.")
     parser.add_argument("--no-push", action="store_true", help="Generate and store report without push.")
     args = parser.parse_args()
 
     settings = load_settings(args.config)
+    trade_date = args.trade_date or datetime.now(ZoneInfo(settings.schedule.timezone)).date().isoformat()
     report = run_nightly_review(
         settings=settings,
-        trade_date=args.trade_date,
+        trade_date=trade_date,
         dry_run=args.dry_run,
         no_push=args.no_push,
     )
@@ -66,6 +68,7 @@ def run_nightly_review(
         reviewer_output = reviewer.chat(prompt_builder.REVIEWER_SYSTEM_PROMPT, reviewed_prompt)
 
     plan = parser.parse(reviewer_output)
+    plan.trade_date = trade_date
     plan = RiskFilter().apply(plan)
     report = ReportRenderer().render(plan)
     push_status = "skipped"

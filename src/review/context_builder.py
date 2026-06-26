@@ -24,4 +24,3 @@ class ContextBuilder:
             },
         }
         return json.dumps(payload, ensure_ascii=False, indent=2)
-
